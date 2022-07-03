@@ -16,17 +16,19 @@ const Main = styled.main`
 interface HomePageProps {
   threads: Thread[]
   after: string | null
+  category: string | undefined
 }
 
-const HomePage: NextPage<HomePageProps> = (props) => {
-  const { threads, after } = props
+const CategoryPage: NextPage<HomePageProps> = (props) => {
+  const { threads, after, category } = props
   const [ currentThreads, setCurrentThreads ] = useState<Thread[]>(threads)
   const [ currentAfter, setCurrentAfter ] = useState<string | null>(after)
 
   const loadMore = async () => {
     if (currentAfter) {
       const result = await fetchThreads({
-        after: currentAfter
+        after: currentAfter,
+        category
       })
       setCurrentThreads([
         ...currentThreads,
@@ -44,7 +46,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   return (
     <Wrapper>
       <Head>
-        <title>Threads</title>
+        <title>Dive into anything</title>
         <meta name="description" content="Awesome threads" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -60,12 +62,14 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   )
 }
 
-HomePage.getInitialProps = async () => {
-  const result = await fetchThreads()
+CategoryPage.getInitialProps = async ({ query }) => {
+  const category = query.category as string
+  const result = await fetchThreads({ category })
   return {
     threads: result.threads,
-    after: result.after
+    after: result.after,
+    category
   }
 }
 
-export default HomePage
+export default CategoryPage
