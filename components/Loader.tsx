@@ -26,7 +26,7 @@ const Loader: React.FC = () => {
   return (
     <Wrapper>
       <Animation>
-        <RiSunLine/>
+        <RiSunLine size={20}/>
       </Animation>
     </Wrapper>
   )
