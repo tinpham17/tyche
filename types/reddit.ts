@@ -10,6 +10,7 @@ export interface RedditThread {
     num_comments: number
     subreddit: string
     selftext: string
+    selftext_html: string
   }
 }
 

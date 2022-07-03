@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { RiFlashlightLine, RiFlashlightFill, RiFireLine, RiFireFill, RiWindyLine, RiWindyFill, RiStarLine, RiStarFill } from 'react-icons/ri'
+import { RiFlashlightLine, RiFlashlightFill, RiFireLine, RiFireFill, RiWindyLine, RiWindyFill, RiStarLine, RiStarFill, RiHomeHeartLine } from 'react-icons/ri'
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,14 +26,24 @@ const Item = styled.div<{ active: boolean }>`
     background: #ededed;
   }
   ${props => props.active && `{
-    background: #ededed;
+    background: #f5f5f5;
     color: ${props.theme.colors.main};
   }`}
   display: flex;
   align-items: center;
   gap: 4px;
-  svg {
-    font-size: 18px;
+`
+
+const Logo = styled.div`
+  width: 40px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #878A8C;
+  &:hover {
+    cursor: pointer;
+    color: ${props => props.theme.colors.main};
   }
 `
 
@@ -49,26 +59,26 @@ const CategoryBar: React.FC<CategoryBarProps> = (props) => {
     {
       key: 'best',
       label: 'Best',
-      icon: <RiFlashlightLine/>,
-      activeIcon: <RiFlashlightFill/>
+      icon: <RiFlashlightLine size={20}/>,
+      activeIcon: <RiFlashlightFill size={20}/>
     },
     {
       key: 'hot',
       label: 'Hot',
-      icon: <RiFireLine/>,
-      activeIcon: <RiFireFill/>
+      icon: <RiFireLine size={20}/>,
+      activeIcon: <RiFireFill size={20}/>
     },
     {
       key: 'new',
       label: 'New',
-      icon: <RiWindyLine/>,
-      activeIcon: <RiWindyFill/>
+      icon: <RiWindyLine size={20}/>,
+      activeIcon: <RiWindyFill size={20}/>
     },
     {
       key: 'top',
       label: 'Top',
-      icon: <RiStarLine/>,
-      activeIcon: <RiStarFill/>
+      icon: <RiStarLine size={20}/>,
+      activeIcon: <RiStarFill size={20}/>
     }
   ]
 
@@ -76,6 +86,11 @@ const CategoryBar: React.FC<CategoryBarProps> = (props) => {
 
   return (
     <Wrapper>
+      <Logo>
+        <Link href='/'>
+          <RiHomeHeartLine size={24}/>
+        </Link>
+      </Logo>
       {items.map((item) => (
         <Link
           key={item.key}

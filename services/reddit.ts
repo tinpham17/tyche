@@ -3,11 +3,14 @@ import { RedditListing, RedditThread } from 'types/reddit'
 import { Thread } from 'types/thread'
 
 const toThread = (item: RedditThread): Thread => {
+  const content = item.data.selftext_html
+    ? item.data.selftext_html.replaceAll('&lt;!-- SC_OFF --&gt;', '').replaceAll('&lt;!-- SC_ON --&gt;', '')
+    : ''
   return {
     id: item.data.id,
     title: item.data.title,
     description: item.data.selftext,
-    content: '',
+    content,
     channel: item.data.subreddit,
     numUps: item.data.ups,
     numDowns: item.data.downs,

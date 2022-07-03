@@ -28,7 +28,7 @@ const ThreadList: React.FC<ThreadListProps> = (props) => {
       {threads.map((thread) => (
         <Link key={thread.id} href={`/thread/${thread.id}`}>
           <a>
-            <ThreadDetail thread={thread}/>
+            <ThreadDetail thread={thread} isDetail={false}/>
           </a>
         </Link>
       ))}
