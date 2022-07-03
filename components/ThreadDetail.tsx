@@ -79,6 +79,11 @@ interface ThreadDetailProps {
 
 const ThreadDetail: React.FC<ThreadDetailProps> = (props) => {
   const { thread, isDetail } = props
+
+  const renderTimeAgo = () => {
+    return typeof window !== undefined && <TimeAgo date={new Date(thread.postedAt)} />
+  }
+
   return (
     <Wrapper>
       <Aside>
@@ -87,7 +92,9 @@ const ThreadDetail: React.FC<ThreadDetailProps> = (props) => {
         <RiArrowDownCircleLine size={24}/>
       </Aside>
       <View>
-        <Meta><strong>{thread.channel}</strong> • Posted by {thread.postedBy} <TimeAgo date={new Date(thread.postedAt)} /></Meta>
+        <Meta>
+          <strong>{thread.channel}</strong> • Posted by {thread.postedBy} { renderTimeAgo() }
+        </Meta>
         <Title>{thread.title}</Title>
         {thread.isVideo && (
           <video width="100%" controls>
