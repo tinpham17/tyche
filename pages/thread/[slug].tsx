@@ -8,7 +8,7 @@ import { Thread } from 'types/thread'
 const Wrapper = styled.div``
 
 const Main = styled.main`
-  padding: 20px;
+  padding: 10px;
 `
 
 interface ThreadPageProps {

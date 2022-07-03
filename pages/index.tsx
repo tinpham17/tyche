@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 const Wrapper = styled.div``
 
 const Main = styled.main`
-  padding: 20px;
+  padding: 10px;
 `
 
 interface HomePageProps {
