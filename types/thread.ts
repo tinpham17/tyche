@@ -1,9 +1,11 @@
 export interface Thread {
   id: string
   title: string
-  description: string
-  content: string
   channel: string
+  isSelf: boolean
+  content: string
+  isVideo: boolean
+  videoUrl: string
   numUps: number
   numDowns: number
   numComments: number

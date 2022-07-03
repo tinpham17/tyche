@@ -1,13 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { fetchThreads } from 'services/reddit'
+import { fetchThreads } from 'services/thread'
 import styled from 'styled-components'
 import { Thread } from 'types/thread'
 import CategoryBar from 'components/CategoryBar'
 import ThreadList from 'components/ThreadList'
 import { useEffect, useState } from 'react'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+`
 
 const Main = styled.main`
   padding: 10px;

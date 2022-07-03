@@ -25,7 +25,7 @@ const ThreadList: React.FC<ThreadListProps> = (props) => {
       pageStart={0}
       hasMore={hasMore}
       loadMore={loadMore}
-      loader={<Loader/>}
+      loader={<Loader key={0}/>}
     >
       {threads.map((thread) => (
         <Link key={thread.id} href={`/thread/${thread.id}`}>

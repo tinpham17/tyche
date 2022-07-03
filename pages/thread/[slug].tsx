@@ -1,11 +1,15 @@
+import CategoryBar from 'components/CategoryBar'
 import ThreadDetail from 'components/ThreadDetail'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { fetchThread } from 'services/reddit'
+import { fetchThread } from 'services/thread'
 import styled from 'styled-components'
 import { Thread } from 'types/thread'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+`
 
 const Main = styled.main`
   padding: 10px;
@@ -21,11 +25,12 @@ const ThreadPage: NextPage<ThreadPageProps> = (props) => {
     <Wrapper>
       <Head>
         <title>{ thread.title }</title>
-        <meta name="description" content={ thread.description } />
+        <meta name="description" content={ thread.title } />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Main>
+        <CategoryBar />
         <ThreadDetail thread={thread} isDetail={true}/>
       </Main>
     </Wrapper>

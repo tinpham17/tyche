@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Thread } from 'types/thread'
 import { RiArrowUpCircleLine, RiArrowDownCircleLine, RiChat3Line } from 'react-icons/ri'
 import TimeAgo from 'react-timeago'
+import { marked } from 'marked'
 
 const Wrapper = styled.div`
   display: flex;
@@ -86,12 +87,19 @@ const ThreadDetail: React.FC<ThreadDetailProps> = (props) => {
         <RiArrowDownCircleLine size={24}/>
       </Aside>
       <View>
-        <Meta>Posted by {thread.postedBy} <TimeAgo date={new Date(thread.postedAt)} /></Meta>
+        <Meta><strong>{thread.channel}</strong> • Posted by {thread.postedBy} <TimeAgo date={new Date(thread.postedAt)} /></Meta>
         <Title>{thread.title}</Title>
+        {thread.isVideo && (
+          <video width="100%" controls>
+            <source src={thread.videoUrl}/>
+          </video>
+        )}
         {isDetail && (
-          <Content dangerouslySetInnerHTML={{
-            __html: thread.content
-          }}/>
+          <>
+            <Content dangerouslySetInnerHTML={{
+              __html: marked(thread.content)
+            }}/>
+          </>
         )}
         <Social>
           <button>

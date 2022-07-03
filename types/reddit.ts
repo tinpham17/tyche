@@ -9,8 +9,14 @@ export interface RedditThread {
     ups: number
     num_comments: number
     subreddit: string
+    is_self: boolean
     selftext: string
-    selftext_html: string
+    is_video: boolean
+    media: {
+      reddit_video: {
+        fallback_url: string
+      }
+    }
   }
 }
 

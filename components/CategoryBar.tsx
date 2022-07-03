@@ -87,8 +87,10 @@ const CategoryBar: React.FC<CategoryBarProps> = (props) => {
   return (
     <Wrapper>
       <Logo>
-        <Link href='/'>
-          <RiHomeHeartLine size={24}/>
+        <Link key={0} href='/'>
+          <a>
+            <RiHomeHeartLine size={24}/>
+          </a>
         </Link>
       </Logo>
       {items.map((item) => (
